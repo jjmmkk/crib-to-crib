@@ -1,13 +1,13 @@
 requirejs.config(
     {
         paths: {
+            'async': 'vendor/require.async',
             'jquery': 'vendor/jquery',
             'backbone': 'vendor/backbone',
             'backbone.localStorage': 'vendor/backbone.localStorage',
             'underscore': 'vendor/underscore',
-            'gmaps': 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCzxM0KiQvl_h2C29l5t43Jx-MR7wMbuEA&sensor=false',
-            'map': 'lib/map',
-            'debug': 'lib/debug'
+            'debug': 'lib/debug',
+            'map': 'lib/map'
         },
         shim: {
             'backbone': {
@@ -31,7 +31,7 @@ require(
     'backbone.localStorage',
     'debug'
 ],
-function() {
+function() {// Global boys don't cry and export whatever they want
 
 
 
@@ -224,6 +224,10 @@ function() {
         }
 
     } );
+    require( [ 'map' ], function( map ) {
+        map.hello();
+    } );
+
 
 
     //
