@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Crib to crib</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!--
+            @todo
+            favicon.ico
+        -->
+
+        <link rel="stylesheet" href="css/vendor/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script data-main="js/main" src="js/vendor/require.js"></script>
+    </head>
+    <body>
+
+
+        <!--
+            Template: Content
+        -->
+        <script type="text/template" id="tpl-content-list">
+            <section id="tag-list">
+            </section>
+        </script>
+
+        <script type="text/template" id="tpl-content-map">
+            <section id="tag-map">
+            </section>
+        </script>
+
+
+        <!--
+            Template: Parts
+        -->
+        <script type="text/template" id="tpl-part-list-item">
+            <div>
+                <%= owner %>
+            </div>
+            <div>
+                <%= address %>
+            </div>
+            <a class="act-destroy">Remove</a>
+        </script>
+
+
+        <!--
+            Template: Header
+        -->
+        <script type="text/template" id="tpl-header-list">
+            <h1>Crib to crib</h1>
+            <nav id="tag-navigation">
+                <a id="act-map">Map</a>
+            </nav>
+            <menu id="tag-controls">
+                <input
+                    type="text"
+                    id="crib-owner"
+                    name="crib-owner"
+                    placeholder="Owner"
+                >
+                <input
+                    type="text"
+                    id="crib-address"
+                    name="crib-address"
+                    placeholder="Adress"
+                >
+                <a id="act-add">Add</a>
+            </menu>
+        </script>
+
+        <script type="text/template" id="tpl-header-map">
+            <h1>Crib to crib</h1>
+            <nav id="tag-navigation">
+                <a id="act-list">List</a>
+            </nav>
+        </script>
+
+
+        <!--
+            Static
+        -->
+        <div id="tag-app">
+            <header id="tag-header">
+            </header>
+            <div id="tag-content">
+            </div>
+        </div>
+
+
+    </body>
+</html>
