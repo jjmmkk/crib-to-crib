@@ -8,3 +8,4 @@ Your online solution to the NP-hard travelling, drunken homeowners problem.
 
 * Pretty pixels
 * Implement Google Maps
+* Find a solution for event listener zombies

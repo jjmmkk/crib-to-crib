@@ -29,6 +29,7 @@ require(
     'jquery',
     'backbone',
     'backbone.localStorage',
+    'map',
     'debug'
 ],
 function() {// Global boys don't cry and export whatever they want
@@ -50,6 +51,7 @@ function() {// Global boys don't cry and export whatever they want
         // Only for reference, not used by the script
         defaults: {
             'address': '',
+            'lat_lng': '',
             'owner': ''
         }
 
@@ -93,6 +95,7 @@ function() {// Global boys don't cry and export whatever they want
                 address: $( '#crib-address' ),
                 owner: $( '#crib-owner' )
             };
+
         },
 
         events: {
@@ -104,22 +107,29 @@ function() {// Global boys don't cry and export whatever they want
 
         addCrib: function() {
             // Simple validation
-            var error = false;
+            var valid = true;
             if ( this.fields.address.val() === '' ) {
-                error = true;
+                valid = false;
                 this.fields.address.addClass( 'error' );
             }
             if ( this.fields.owner.val() === '' ) {
-                error = true;
+                valid = false;
                 this.fields.owner.addClass( 'error' );
             }
 
-            if ( error === false ) {
+            if ( valid ) {
                 // Create crib
-                app.cribs.create( {
+                var crib = new Crib( {
                     'address': this.fields.address.val(),
                     'owner': this.fields.owner.val()
                 } );
+                app.cribs.push( crib );
+                map.addressToLatLng(
+                    crib.get( 'address' ),
+                    function( lat_lng ) {
+                        crib.save( { 'lat_lng': lat_lng } );
+                    }
+                );
                 // Reset fields
                 this.fields.address.val( '' ).removeClass( 'error' );
                 this.fields.owner.val( '' ).removeClass( 'error' );
@@ -197,7 +207,6 @@ function() {// Global boys don't cry and export whatever they want
             _.each( this.model.models, function( crib ) {
                 this.renderOne( crib );
             }, this );
-            return this;
         },
 
         renderOne: function( crib ) {
@@ -220,12 +229,13 @@ function() {// Global boys don't cry and export whatever they want
         },
 
         render: function() {
+            this.model.bind( 'reset', this.render, this );
             this.$el.html( this.template() );
+            _.each( this.model.models, function( crib ) {
+                d.l( crib );
+            }, this );
         }
 
-    } );
-    require( [ 'map' ], function( map ) {
-        map.hello();
     } );
 
 
@@ -262,6 +272,9 @@ function() {// Global boys don't cry and export whatever they want
         },
 
         map: function() {
+            // @todo
+            d.l( 'map' );
+
             // Header
             // Only initialize once
             if ( app.mapHeader ) {
@@ -271,8 +284,14 @@ function() {// Global boys don't cry and export whatever they want
             }
 
             // Crib map
-            // @todo
-            app.mapView = new MapView();
+            if ( !app.mapView ) {
+                app.mapView = new MapView( { model: app.cribs } );
+            }
+            app.cribs.fetch( {
+                success: function() {
+                    app.mapView.render();
+                }
+            } );
         }
     } );
 
