@@ -11,8 +11,8 @@ function() {
 
     return {
         hello: function() {
-            d.c( 'hello' )
-            d.c( google.maps );
+            d.l( 'hello' )
+            d.l( google.maps );
         },
 
         tsp: function( points ) {

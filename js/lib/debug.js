@@ -1,11 +1,25 @@
 define( function() {
 
+    var response = function( arg, method ) {
+        method = method || 'log';
+        if ( typeof console === 'undefined' || !console[method] ) {
+            return;
+        }
+        return console[method]( arg );
+    };
+
     return d = {
-        c: function( msg ) {
-            if ( typeof console === 'undefined' ) {
-                return;
-            }
-            return console.log( msg );
+        e: function( arg ) {
+            return response( arg, 'error' );
+        },
+        i: function( arg ) {
+            return response( arg, 'info' );
+        },
+        l: function( arg ) {
+            return response( arg, 'log' );
+        },
+        w: function( arg ) {
+            return response( arg, 'warn' );
         }
     };
 
