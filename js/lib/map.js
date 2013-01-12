@@ -1,37 +1,36 @@
-// @todo
-// The distance between two points in a grid is
-// sqrt( (B->x - A->x)^2 + (B->y - A->y)^2 )
-// where `A` and `B` are the two points
-
+// https://developers.google.com/maps/documentation/javascript/reference
+// @todo:
+// https://developers.google.com/maps/documentation/javascript/directions
+// https://developers.google.com/maps/documentation/javascript/distancematrix
 define( [ 'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyCzxM0KiQvl_h2C29l5t43Jx-MR7wMbuEA&sensor=false' ],
 function() {
 
-    // Utilities
-    var u = {
-        // Square a number
-        sq: function( num ) {
-            return Math.pow( num, 2 );
+    // Google Maps stuff
+    var gm = {
+
+        // Geocoder
+        geocoder: new google.maps.Geocoder(),
+
+        // Latitude and longitude
+        position: function ( lat, lng ) {
+            return new google.maps.LatLng( lat, lng );
         },
 
-        // Google Maps geocoder
-        geocoder: new google.maps.Geocoder()
-    }
+        // Bounds
+        bounds: new google.maps.LatLngBounds()
 
-    // Calculcate distance between points A and B
-    // by sqrt( sqr(B->x - A->x) + sqr(B->y - A->y) )
-    var pointsDistance = function( a, b, accuracy ) {
-        accuracy = accuracy || 30;
-        return Math.sqrt( u.sq( b.x - a.x ) + u.sq( b.x - a.x ) ).toFixed( accuracy );
-    }
+    };
 
-    // Export
-    return map = {
+    // Functionality to be exposed
+    var map = {
+
         addressToLatLng: function( address, callback ) {
-            u.geocoder.geocode( { 'address': address }, function( result, status ) {
+            gm.geocoder.geocode( { 'address': address }, function( result, status ) {
                 if ( status == google.maps.GeocoderStatus.OK ) {
+                    var location = result[0].geometry.location;
                     callback( {
-                        lng: result[0].geometry.location.lng(),
-                        lat: result[0].geometry.location.lat(),
+                        lng: location.lng(),
+                        lat: location.lat()
                     } );
                 } else {
                     // @todo
@@ -40,8 +39,44 @@ function() {
             } );
         },
 
-        travellingSalesman: function( points ) {
-            // @todo
+        create: function( container_id, options ) {
+            // Find positions by looping cribs
+            var positions = [];
+            _.each( app.cribsCollection.models, function( model ) {
+                var lat_lng = model.get( 'lat_lng' );
+                var lat = lat_lng.lat;
+                var lng = lat_lng.lng;
+                positions.push( gm.position( lat, lng ) );
+            } );
+
+            // Map options
+            var defaultOptions = {
+                zoom: 15,
+                center: positions[0],
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            options = options || defaultOptions;
+
+            // Create map
+            var map = new google.maps.Map( document.getElementById( container_id ), options );
+
+            // Create markers based on positions
+            // and put the markers on the map
+            // Add position to bounds
+            _.each( positions, function( position ) {
+                var marker = new google.maps.Marker( {
+                    position: position,
+                    map: map
+                } );
+                gm.bounds.extend( position );
+            } );
+
+            // Make map viewport contain all markers
+            map.fitBounds( gm.bounds );
         }
+
     };
+
+    return map;
+
 } );

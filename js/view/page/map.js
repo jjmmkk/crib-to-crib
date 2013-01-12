@@ -2,8 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!tpl/page/map.html'
-], function( $, _, Backbone, MapPageTpl ) {
+    'text!tpl/page/map.html',
+    'lib/map'
+], function( $, _, Backbone, MapPageTpl, map ) {
 
     var MapView = Backbone.View.extend( {
 
@@ -12,11 +13,11 @@ define([
         template: MapPageTpl,
 
         initialize: function() {
-            d.l( 'view: map' );
         },
 
         render: function() {
             this.$el.html( this.template );
+            map.create( 'tag-map-wrap' );
         }
 
     } );
