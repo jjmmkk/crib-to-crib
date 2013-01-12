@@ -13,8 +13,6 @@ define([
         template: ListPageTpl,
 
         initialize: function() {
-            d.l( 'view: list' );
-
             this.model.bind( 'reset', this.render, this );
             var self = this;
             this.model.bind( 'add', function( crib ) {

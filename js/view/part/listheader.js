@@ -14,7 +14,6 @@ define( [
         template: ListHeaderTpl,
 
         initialize: function() {
-            d.l( 'view: listheader' );
         },
 
         render: function() {

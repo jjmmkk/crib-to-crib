@@ -6,9 +6,9 @@ define( [
 
     var views = {};
     var create = function( context, name, View, options ) {
-        d.l( 'viewmanager 1:' + name );
+        d.i( 'viewmanager.create: ' + name );// @todo
+
         if( typeof views[name] !== 'undefined' ) {
-            d.l( 'viewmanager 2:' + name );
             views[name].undelegateEvents();
             if( typeof views[name].clean === 'function' ) {
                 views[name].clean();

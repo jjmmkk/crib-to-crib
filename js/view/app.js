@@ -13,7 +13,6 @@ define( [
         template: AppTpl,
 
         initialize: function() {
-            d.l( 'view: app' );
         },
 
         render: function() {

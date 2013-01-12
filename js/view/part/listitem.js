@@ -12,8 +12,6 @@ define([
         template: ListItemTpl,
 
         initialize: function () {
-            d.l( 'view: listitem' );
-
             this.model.bind( 'destroy', this.remove, this );
         },
 

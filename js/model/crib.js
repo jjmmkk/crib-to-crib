@@ -7,6 +7,8 @@ define( [
 
         defaults: {
             'address': '',
+            'is_destination': false,
+            'is_origin': false,
             'lat_lng': '',
             'owner': ''
         }

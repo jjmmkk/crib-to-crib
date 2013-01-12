@@ -12,7 +12,6 @@ define( [
         template: MapHeaderTpl,
 
         initialize: function() {
-            d.l( 'view: mapheader' );
         },
 
         render: function() {
