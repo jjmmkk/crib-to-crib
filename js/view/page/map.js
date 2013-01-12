@@ -1,27 +1,27 @@
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'text!tpl/page/map.html',
-    'lib/map'
+	'jquery',
+	'underscore',
+	'backbone',
+	'text!tpl/page/map.html',
+	'lib/map'
 ], function( $, _, Backbone, MapPageTpl, map ) {
 
-    var MapView = Backbone.View.extend( {
+	var MapView = Backbone.View.extend( {
 
-        el: '#tag-content',
+		el: '#tag-content',
 
-        template: MapPageTpl,
+		template: MapPageTpl,
 
-        initialize: function() {
-        },
+		initialize: function () {
+		},
 
-        render: function() {
-            this.$el.html( this.template );
-            map.create( 'tag-map-wrap' );
-        }
+		render: function () {
+			this.$el.html( this.template );
+			map.create( 'tag-map-wrap' );
+		}
 
-    } );
+	} );
 
-    return MapView;
+	return MapView;
 
 } );

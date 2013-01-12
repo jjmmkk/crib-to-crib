@@ -1,37 +1,37 @@
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'text!tpl/part/listitem.html'
+	'jquery',
+	'underscore',
+	'backbone',
+	'text!tpl/part/listitem.html'
 ], function( $, _, Backbone, ListItemTpl ) {
 
-    var ListItemView = Backbone.View.extend( {
+	var ListItemView = Backbone.View.extend( {
 
-        tagName: 'article',
+		tagName: 'article',
 
-        template: ListItemTpl,
+		template: ListItemTpl,
 
-        initialize: function () {
-            this.model.bind( 'destroy', this.remove, this );
-        },
+		initialize: function () {
+			this.model.bind( 'destroy', this.remove, this );
+		},
 
-        render: function() {
-            this.$el.html( _.template( this.template, this.model.toJSON() ) );
-            return this;
-        },
+		render: function () {
+			this.$el.html( _.template( this.template, this.model.toJSON() ) );
+			return this;
+		},
 
-        events: {
-            'click .act-destroy': 'destroy'
-        },
+		events: {
+			'click .act-destroy': 'destroy'
+		},
 
-        destroy: function() {
-            this.model.destroy();
-            this.model.off( null, null, this );
-            this.off();
-        }
+		destroy: function () {
+			this.model.destroy();
+			this.model.off( null, null, this );
+			this.off();
+		}
 
-    } );
+	} );
 
-    return ListItemView;
+	return ListItemView;
 
 } );

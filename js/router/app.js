@@ -1,76 +1,80 @@
 define( [
-    'jquery',
-    'underscore',
-    'backbone',
-    'lib/viewmanager'
-], function ( $, _, Backbone, ViewManager ) {
+	'jquery',
+	'underscore',
+	'backbone',
+	'lib/viewmanager'
+], function( $, _, Backbone, ViewManager ) {
 
-    var AppRouter = Backbone.Router.extend( {
-        routes: {
-            // Pages
-            'map': 'map',
-            'list': 'list',
-            
-            // Default route
-            '*actions': 'list'
-        },
+	var AppRouter = Backbone.Router.extend( {
 
-        initialize: function() {
-        },
+		routes: {
+			// Pages
+			'map': 'map',
+			'list': 'list',
+			// Default route
+			'*actions': 'list'
+		},
 
-        start: function( options ) {
-            var appView = options.appView;
+		initialize: function () {
+		},
 
-            // Page: Map
-            this.on( 'route:map', function () {
-                var options = {
-                    model: app.cribsCollection
-                };
-                app.cribsCollection.fetch( {
-                    success: function() {
-                        require( [ 'view/part/mapheader' ], function( MapHeader ) {
-                            var mapHeader = ViewManager.create( appView, 'MapHeader', MapHeader, options );
-                            mapHeader.render();
-                        } );
+		start: function ( options ) {
+			var appView = options.appView;
 
-                        require( ['view/page/map'], function ( MapPage ) {
-                            var mapPage = ViewManager.create( appView, 'MapPage', MapPage, options );
-                            mapPage.render();
-                        } );
-                    }
-                } );
+			// Page: Map
+			this.on( 'route:map', function () {
+				var options = {
+					model: app.cribsCollection
+				};
+				app.cribsCollection.fetch( {
+					success: function() {
+						// Header
+						require( [ 'view/part/mapheader' ], function( MapHeader ) {
+							var mapHeader = ViewManager.create( appView, 'MapHeader', MapHeader, options );
+							mapHeader.render();
+						} );
 
-            } );
+						// Content
+						require( ['view/page/map'], function ( MapPage ) {
+							var mapPage = ViewManager.create( appView, 'MapPage', MapPage, options );
+							mapPage.render();
+						} );
+					}
+				} );
 
-            // Default route
-            // Page: List
-            this.on( 'route:list', function ( actions ) {
-                actions = actions || {};
-                var options = {
-                    actions: actions,
-                    model: app.cribsCollection
-                };
+			} );
 
-                app.cribsCollection.fetch( {
-                    success: function() {
-                        require( [ 'view/part/listheader' ], function( ListHeader ) {
-                            var listHeader = ViewManager.create( appView, 'ListHeader', ListHeader, options );
-                            listHeader.render();
-                        } );
+			// Default route
+			// Page: List
+			this.on( 'route:list', function ( actions ) {
+				actions = actions || {};
+				var options = {
+					actions: actions,
+					model: app.cribsCollection
+				};
 
-                        require( [ 'view/page/list' ], function( ListPage ) {
-                            var listPage = ViewManager.create( appView, 'ListPage', ListPage, options );
-                            listPage.render();
-                        } );
-                    }
-                } );
-            } );
+				app.cribsCollection.fetch( {
+					success: function() {
+						// Header
+						require( [ 'view/part/listheader' ], function( ListHeader ) {
+							var listHeader = ViewManager.create( appView, 'ListHeader', ListHeader, options );
+							listHeader.render();
+						} );
 
-            Backbone.history.start();
-        }
+						// Content
+						require( [ 'view/page/list' ], function( ListPage ) {
+							var listPage = ViewManager.create( appView, 'ListPage', ListPage, options );
+							listPage.render();
+						} );
+					}
+				} );
+			} );
 
-    } );
+			Backbone.history.start();
+		}
 
-    return AppRouter;
+	} );
+
+	return AppRouter;
 
 } );

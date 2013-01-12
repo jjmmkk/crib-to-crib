@@ -1,31 +1,31 @@
 define( [
-    'jquery',
-    'underscore',
-    'backbone',
-    'text!tpl/header/map.html'
+	'jquery',
+	'underscore',
+	'backbone',
+	'text!tpl/header/map.html'
 ], function( $, _, Backbone, MapHeaderTpl ) {
 
-    var MapHeaderView = Backbone.View.extend( {
+	var MapHeaderView = Backbone.View.extend( {
 
-        el: '#tag-header',
+		el: '#tag-header',
 
-        template: MapHeaderTpl,
+		template: MapHeaderTpl,
 
-        initialize: function() {
-        },
+		initialize: function () {
+		},
 
-        render: function() {
-            this.$el.html( this.template);
-        },
+		render: function () {
+			this.$el.html( this.template);
+		},
 
-        events: {
-            'click #act-list': function() {
-                app.router.navigate( 'list', { trigger: true } );
-            }
-        }
+		events: {
+			'click #act-list': function() {
+				app.router.navigate( 'list', { trigger: true } );
+			}
+		}
 
-    } );
+	} );
 
-    return MapHeaderView;
+	return MapHeaderView;
 
 } );

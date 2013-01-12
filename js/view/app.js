@@ -12,10 +12,10 @@ define( [
 
         template: AppTpl,
 
-        initialize: function() {
+        initialize: function () {
         },
 
-        render: function() {
+        render: function () {
             this.$el.html( this.template );
         }
 

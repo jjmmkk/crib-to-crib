@@ -5,13 +5,13 @@ define( [
 	'backbone.localStorage'
 ], function( _, Backbone, Crib ) {
 
-    var Cribs = Backbone.Collection.extend( {
+	var Cribs = Backbone.Collection.extend( {
 
-        model: Crib,
+		model: Crib,
 
-        localStorage: new Store( 'crib-to-crib' )
+		localStorage: new Store( 'crib-to-crib' )
 
-    } );
+	} );
 
 	return Cribs;
 
