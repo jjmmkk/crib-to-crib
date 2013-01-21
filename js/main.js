@@ -36,6 +36,8 @@ requirejs.config( {
 		}
 	},
 
+	urlArgs: [ 'diecache=', ( new Date() ).getTime() ].join( '' ),
+
 	waitSeconds: 20
 
 } );
