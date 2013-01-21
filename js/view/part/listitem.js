@@ -1,4 +1,4 @@
-define([
+define( [
 	'jquery',
 	'underscore',
 	'backbone',
@@ -13,21 +13,33 @@ define([
 
 		initialize: function () {
 			this.model.bind( 'destroy', this.remove, this );
+			this.model.on( 'change:is_destination', this.render, this );
+			this.model.on( 'change:is_origin', this.render, this );
 		},
 
 		render: function () {
-			this.$el.html( _.template( this.template, this.model.toJSON() ) );
+			this.$el.addClass( 'tag-crib' ).html( _.template( this.template, this.model.toJSON() ) );
 			return this;
 		},
 
 		events: {
-			'click .act-destroy': 'destroy'
+			'click .event-destination': 'setDestination',
+			'click .event-destroy': 'destroy',
+			'click .event-origin': 'setOrigin'
 		},
 
 		destroy: function () {
 			this.model.destroy();
 			this.model.off( null, null, this );
 			this.off();
+		},
+
+		setDestination: function () {
+			this.model.setDestination();
+		},
+
+		setOrigin: function () {
+			this.model.setOrigin();
 		}
 
 	} );

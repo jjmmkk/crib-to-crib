@@ -19,7 +19,7 @@ define( [
 		},
 
 		events: {
-			'click #act-list': function() {
+			'click #event-list': function() {
 				app.router.navigate( 'list', { trigger: true } );
 			}
 		}

@@ -25,8 +25,8 @@ define( [
 		},
 
 		events: {
-			'click #act-add': 'addCrib',
-			'click #act-map': function() {
+			'click #event-add': 'addCrib',
+			'click #event-map': function() {
 				app.router.navigate( 'map', { trigger: true } );
 			}
 		},

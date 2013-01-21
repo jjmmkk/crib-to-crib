@@ -1,7 +1,30 @@
-<div>
+<h1>
 	<%= owner %>
-</div>
-<div>
+</h1>
+<h2>
 	<%= address %>
-</div>
-<a class="act-destroy">Remove</a>
+</h2>
+
+<button
+	class="event-origin<%
+		if ( is_origin === true ) {
+			%> is-origin<%
+		}
+	%>"
+>
+	Origin
+</button>
+
+<button
+	class="event-destination<%
+		if ( is_destination === true ) {
+			%> is-destination<%
+		}
+	%>"
+>
+	Destination
+</button>
+
+<button class="event-destroy">
+	Remove
+</button>
