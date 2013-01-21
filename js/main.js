@@ -48,8 +48,7 @@ require( [
 	'view/app',
 	'router/app',
 	'lib/viewmanager',
-	'collection/cribs',
-	'debug'
+	'collection/cribs'
 ],
 function( AppView, AppRouter, ViewManager, CribsCollection ) {
 

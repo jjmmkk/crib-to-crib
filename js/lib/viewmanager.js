@@ -1,8 +1,12 @@
-define( function() {
+// @todo: remove debuggin
+define( [
+	'debug'
+],
+function( d ) {
 
 	var views = {};
 	var create = function ( context, name, View, options ) {
-		d.i( 'viewmanager.create: ' + name );// @todo
+		d.i( 'viewmanager.create: ' + name );
 
 		if( typeof views[name] !== 'undefined' ) {
 			views[name].undelegateEvents();
