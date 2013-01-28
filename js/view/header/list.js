@@ -28,7 +28,15 @@ define( [
 		events: {
 			'click #event-add': 'addCrib',
 			'click #event-map': function() {
-				app.router.navigate( 'map', { trigger: true } );
+				if ( app.cribsCollection.mapViable() === true ) {
+					app.router.navigate( 'map', { trigger: true } );
+				} else if ( app.cribsCollection.models.length > 8 ) {
+					new FeedbackView( {
+						'type': 'error',
+						'title': 'Too many cribs!',
+						'message': 'A generous donation could is a step closer to Google Maps Business.'
+					} );
+				}
 			}
 		},
 
@@ -57,7 +65,10 @@ define( [
 							'owner': owner,
 							'lat_lng': result
 						} );
+						// Push before save, so that the sync is done to local
+						// storage rather than the nonexistent backend URL
 						app.cribsCollection.push( crib );
+						crib.save();
 						// Reset fields
 						_.each( obj.fields, function( field ) {
 							field.val( '' ).removeClass( 'error' );

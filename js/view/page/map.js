@@ -16,8 +16,12 @@ define([
 		},
 
 		render: function () {
-			this.$el.html( this.template );
-			map.create( 'tag-map-wrap' );
+			if ( app.cribsCollection.mapViable() === true ) {
+				this.$el.html( this.template );
+				map.create( 'tag-map-wrap' );
+			} else {
+				app.router.navigate( 'list', { trigger: true } );
+			}
 		}
 
 	} );
