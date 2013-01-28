@@ -29,7 +29,7 @@ define( [
 				app.cribsCollection.fetch( {
 					success: function() {
 						// Header
-						require( [ 'view/part/mapheader' ], function( MapHeader ) {
+						require( [ 'view/header/map' ], function( MapHeader ) {
 							var mapHeader = ViewManager.create( appView, 'MapHeader', MapHeader, options );
 							mapHeader.render();
 						} );
@@ -56,7 +56,7 @@ define( [
 				app.cribsCollection.fetch( {
 					success: function() {
 						// Header
-						require( [ 'view/part/listheader' ], function( ListHeader ) {
+						require( [ 'view/header/list' ], function( ListHeader ) {
 							var listHeader = ViewManager.create( appView, 'ListHeader', ListHeader, options );
 							listHeader.render();
 						} );
