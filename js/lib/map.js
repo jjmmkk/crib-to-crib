@@ -21,7 +21,7 @@ function() {
 
 	};
 
-	// Functionality to be exposed
+	// Exposed functionality
 	var map = {
 
 		addressToLatLng: function( address, callback ) {
@@ -34,10 +34,9 @@ function() {
 
 						lat: location.lat()
 
-					} );
+					}, 'success' );
 				} else {
-					// @todo
-					// Error handling
+					callback( {}, 'error' );
 				}
 			} );
 		},

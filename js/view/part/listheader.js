@@ -4,8 +4,9 @@ define( [
 	'backbone',
 	'text!tpl/header/list.html',
 	'model/crib',
-	'lib/map'
-], function( $, _, Backbone, ListHeaderTpl, Crib, map ) {
+	'lib/map',
+	'view/utility/feedback'
+], function( $, _, Backbone, ListHeaderTpl, Crib, map, FeedbackView ) {
 
 	var ListHeaderView = Backbone.View.extend( {
 
@@ -43,18 +44,31 @@ define( [
 				}
 			} );
 			if ( valid ) {
-				// Create crib
-				var crib = new Crib( {
-					'address': this.fields.address.val(),
-					'owner': this.fields.owner.val()
-				} );
-				app.cribsCollection.push( crib );
-				map.addressToLatLng( crib.get( 'address' ), function( lat_lng ) {
-					crib.save( { 'lat_lng': lat_lng } );
-				} );
-				// Reset fields
-				_.each( this.fields, function( field ) {
-					field.val( '' ).removeClass( 'error' );
+				var address = this.fields.address.val();
+				var owner = this.fields.owner.val();
+
+				// Find address
+				var obj = this;
+				map.addressToLatLng( address, function( result, status ) {
+					// Create crib
+					if ( status === 'success' ) {
+						var crib = new Crib( {
+							'address': address,
+							'owner': owner,
+							'lat_lng': result
+						} );
+						app.cribsCollection.push( crib );
+						// Reset fields
+						_.each( obj.fields, function( field ) {
+							field.val( '' ).removeClass( 'error' );
+						} );
+					// Error
+					} else {
+						new FeedbackView( {
+							'type': 'error',
+							'title': 'Could not find address'
+						} );
+					}
 				} );
 			}
 		}

@@ -1,0 +1,20 @@
+<section
+	class="act-feedback feedback-<%= type %>"
+	id="tag-feedback"
+>
+	<h1>
+		<%= title %>
+	</h1>
+
+	<%
+		if ( typeof message !== 'undefined' ) {
+			if ( typeof message === 'object' ) {
+				_.each( message, function( string ) {
+					%><p><%= string %></p><%
+				} );
+			} else {
+				%><p><%= message %></p><%
+			}
+		}
+	%>
+</section>
