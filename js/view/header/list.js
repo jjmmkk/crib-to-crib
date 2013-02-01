@@ -34,7 +34,7 @@ define( [
 					new FeedbackView( {
 						'type': 'error',
 						'title': 'Too many cribs!',
-						'message': 'A generous donation could is a step closer to Google Maps Business.'
+						'message': 'A generous donation could be a step closer to Google Maps Business.'
 					} );
 				}
 			}
@@ -66,7 +66,7 @@ define( [
 							'lat_lng': result
 						} );
 						// Push before save, so that the sync is done to local
-						// storage rather than the nonexistent backend URL
+						// storage rather than the nonexistent backend
 						app.cribsCollection.push( crib );
 						crib.save();
 						// Reset fields
