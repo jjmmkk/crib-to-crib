@@ -2,8 +2,11 @@
 // @todo:
 // https://developers.google.com/maps/documentation/javascript/directions
 // https://developers.google.com/maps/documentation/javascript/distancematrix
-define( [ 'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyCzxM0KiQvl_h2C29l5t43Jx-MR7wMbuEA&sensor=false' ],
-function() {
+define( [
+	'underscore',
+	'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyCzxM0KiQvl_h2C29l5t43Jx-MR7wMbuEA&sensor=false'
+],
+function( _ ) {
 
 	// Google Maps stuff
 	var gm = {
@@ -32,11 +35,8 @@ function() {
 				if ( status == google.maps.GeocoderStatus.OK ) {
 					var location = result[0].geometry.location;
 					callback( {
-
 						lng: location.lng(),
-
 						lat: location.lat()
-
 					}, 'success' );
 				} else {
 					callback( {}, 'error' );
@@ -62,21 +62,11 @@ function() {
 			var destination = app.cribsCollection.destination().get( 'lat_lng' );
 			destination = gm.position( destination.lat, destination.lng );
 
-			// Configurable options
-			var defaultOptions = {
-
-				zoom: 15,
-
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-
-			};
-			options = options || defaultOptions;
-
-			// Forced options
-			options.center = origin;
-
-			// Create map
-			var map = new google.maps.Map( document.getElementById( container_id ), options );
+			// Render map
+			var element = document.getElementById( container_id );
+			var map = this.render( element, {
+				center: origin
+			} );
 
 			// Create travel route
 			this.route( map, {
@@ -86,7 +76,21 @@ function() {
 			} );
 		},
 
+		render: function ( element, options ) {
+			// Configurable options
+			options = _.extend( {
+				zoom: 15,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}, options );
+
+			// Create map
+			var map = new google.maps.Map( element, options );
+			return map;
+		},
+
 		route: function ( map, options ) {
+			options = options || {};
+
 			// Forced option
 			options.avoidHighways = true;
 			options.optimizeWaypoints = true;
@@ -99,6 +103,8 @@ function() {
 					gm.directions.display.setDirections( result );
 				}
 			} );
+
+			return map;
 		}
 
 	};
