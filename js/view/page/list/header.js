@@ -20,7 +20,10 @@ define( [
 		},
 
 		events: {
-			'click #event-map': function() {
+			'click #route-splash': function() {
+				app.router.navigate( 'splash', { trigger: true } );
+			},
+			'click #route-map': function() {
 				if ( app.cribsCollection.mapViable() === true ) {
 					app.router.navigate( 'map', { trigger: true } );
 				} else if ( app.cribsCollection.models.length > 8 ) {
