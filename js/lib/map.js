@@ -1,6 +1,6 @@
 define( [
 	'underscore',
-	'text!tpl/map/infobox.html',
+	'text!tpl/lib/infobox.html',
 	'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyCzxM0KiQvl_h2C29l5t43Jx-MR7wMbuEA&sensor=false'
 ],
 function( _, InfoBoxTpl ) {

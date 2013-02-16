@@ -2,7 +2,7 @@ define( [
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!tpl/header/map.html'
+	'text!tpl/page/map/header.html'
 ], function( $, _, Backbone, MapHeaderTpl ) {
 
 	var MapHeaderView = Backbone.View.extend( {

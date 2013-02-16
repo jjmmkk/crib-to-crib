@@ -1,9 +1,9 @@
-define([
+define( [
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!tpl/page/list.html',
-	'view/part/listitem'
+	'text!tpl/page/list/part/list.html',
+	'view/page/list/part/listitem'
 ], function( $, _, Backbone, ListPageTpl, ListItemView ) {
 
 	var ListView = Backbone.View.extend( {
@@ -36,7 +36,7 @@ define([
 			this.model.unbind();
 		}
 
-	});
+	} );
 
 	return ListView;
 

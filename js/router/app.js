@@ -18,8 +18,8 @@ define( [
 		initialize: function () {
 		},
 
-		start: function ( options ) {
-			var appView = options.appView;
+		start: function () {
+			var appView = app.view;
 
 			// Page: Map
 			this.on( 'route:map', function () {
@@ -28,14 +28,7 @@ define( [
 				};
 				app.cribsCollection.fetch( {
 					success: function() {
-						// Header
-						require( [ 'view/header/map' ], function( MapHeader ) {
-							var mapHeader = ViewManager.create( appView, 'MapHeader', MapHeader, options );
-							mapHeader.render();
-						} );
-
-						// Content
-						require( ['view/page/map'], function ( MapPage ) {
+						require( [ 'view/page/map/page' ], function( MapPage ) {
 							var mapPage = ViewManager.create( appView, 'MapPage', MapPage, options );
 							mapPage.render();
 						} );
@@ -55,14 +48,7 @@ define( [
 
 				app.cribsCollection.fetch( {
 					success: function() {
-						// Header
-						require( [ 'view/header/list' ], function( ListHeader ) {
-							var listHeader = ViewManager.create( appView, 'ListHeader', ListHeader, options );
-							listHeader.render();
-						} );
-
-						// Content
-						require( [ 'view/page/list' ], function( ListPage ) {
+						require( [ 'view/page/list/page' ], function( ListPage ) {
 							var listPage = ViewManager.create( appView, 'ListPage', ListPage, options );
 							listPage.render();
 						} );

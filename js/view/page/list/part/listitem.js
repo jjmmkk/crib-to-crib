@@ -2,7 +2,7 @@ define( [
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!tpl/part/listitem.html'
+	'text!tpl/page/list/part/listitem.html'
 ], function( $, _, Backbone, ListItemTpl ) {
 
 	var ListItemView = Backbone.View.extend( {

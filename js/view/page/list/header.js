@@ -2,7 +2,7 @@ define( [
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!tpl/header/list.html',
+	'text!tpl/page/list/header.html',
 	'model/crib',
 	'lib/map',
 	'view/utility/feedback'

@@ -65,7 +65,7 @@ function( AppView, AppRouter, ViewManager, CribsCollection ) {
 	$( document ).ready( function() {
 		app.view.render();
 		app.router = new AppRouter();
-		app.router.start( { appView: app.view } );
+		app.router.start();
 	} );
 
 } );

@@ -2,7 +2,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!tpl/page/map.html',
+	'text!tpl/page/map/part/map.html',
 	'lib/map'
 ], function( $, _, Backbone, MapPageTpl, map ) {
 
