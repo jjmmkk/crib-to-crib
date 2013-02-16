@@ -2,9 +2,8 @@ define( [
     'jquery',
     'underscore',
     'backbone',
-    'lib/viewmanager',
     'text!tpl/app.html'
-], function( $, _, Backbone, ViewManager, AppTpl ) {
+], function( $, _, Backbone, AppTpl ) {
 
     var AppView = Backbone.View.extend( {
 
