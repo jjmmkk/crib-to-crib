@@ -4,13 +4,13 @@ define([
 	'backbone',
 	'text!tpl/page/map/part/map.html',
 	'lib/map'
-], function( $, _, Backbone, MapPageTpl, map ) {
+], function( $, _, Backbone, MapTpl, map ) {
 
 	var MapView = Backbone.View.extend( {
 
 		el: '#tag-content',
 
-		template: MapPageTpl,
+		template: MapTpl,
 
 		initialize: function () {
 		},

@@ -4,24 +4,23 @@ define( [
 	'backbone',
 	'text!tpl/page/list/part/list.html',
 	'view/page/list/part/listitem'
-], function( $, _, Backbone, ListPageTpl, ListItemView ) {
+], function( $, _, Backbone, ListTpl, ListItemView ) {
 
 	var ListView = Backbone.View.extend( {
 
 		el: '#tag-content',
 
-		template: ListPageTpl,
+		template: ListTpl,
 
 		initialize: function () {
-			this.model.bind( 'reset', this.render, this );
 			var self = this;
 			this.model.bind( 'add', function( crib ) {
 				self.renderOne( crib );
-			});
+			} );
 		},
 
 		render: function () {
-			this.$el.html( this.template );
+			this.$el.append( this.template );
 			_.each( this.model.models, function( crib ) {
 				this.renderOne( crib );
 			}, this );

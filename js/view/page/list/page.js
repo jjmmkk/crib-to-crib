@@ -4,8 +4,9 @@ define( [
     'backbone',
     'text!tpl/page/page.html',
     'view/page/list/header',
+    'view/page/list/part/add',
     'view/page/list/part/list'
-], function( $, _, Backbone, PageTpl, PageHeaderView, PagePartList ) {
+], function( $, _, Backbone, PageTpl, PageHeaderView, PagePartAdd, PagePartList ) {
 
     var PageView = Backbone.View.extend( {
 
@@ -21,6 +22,9 @@ define( [
 
             var pageHeaderView = new PageHeaderView( this.options );
             pageHeaderView.render();
+
+            var pagePartAdd = new PagePartAdd( this.options );
+            pagePartAdd.render();
 
             var pagePartList = new PagePartList( this.options );
             pagePartList.render();
