@@ -63,6 +63,11 @@ function( AppView, AppRouter, ViewManager, CribsCollection ) {
 	};
 
 	$( document ).ready( function() {
+		// Mobile: Attempt to align page top with top of browser viewport
+		if ( !window.location.hash ) {
+			window.scrollTo( 0, 0 );
+		}
+
 		app.view.render();
 		app.router = new AppRouter();
 		app.router.start();
