@@ -27,7 +27,7 @@ define( [
 				new FeedbackView( {
 					'type': 'info',
 					'title': 'Nope',
-					'message': 'Not yet implemented.'
+					'message': 'Not yet implemented'
 				} );
 				//app.router.navigate( 'sync', { trigger: true } );
 			}

@@ -1,20 +1,24 @@
 <section
-	class="act-feedback feedback-<%= type %>"
+	class="act-feedback act-feedback-<%= type %>"
 	id="tag-feedback"
+	style="display: none"
 >
-	<h1>
-		<%= title %>
-	</h1>
+	<div class="act-content-container">
+		<div class="act-feedback-text">
+			<h1 class="act-feedback-title">
+				<%= title %>
+			</h1>
 
-	<%
-		if ( typeof message !== 'undefined' ) {
-			if ( typeof message === 'object' ) {
-				_.each( message, function( string ) {
-					%><p><%= string %></p><%
-				} );
-			} else {
-				%><p><%= message %></p><%
-			}
-		}
-	%>
+			<%
+				if ( typeof message !== 'undefined' ) {
+					if ( typeof message !== 'object' ) {
+						message = [ message ];
+					}
+					_.each( message, function( string ) {
+						%><p class="act-feedback-message"><%= string %></p><%
+					} );
+				}
+			%>
+		</div>
+	</div>
 </section>
