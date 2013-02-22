@@ -23,7 +23,7 @@ define( [
 
 			// Default route
 			// Page: Splash screen
-			this.on( 'route:splash', function ( actions ) {
+			this.on( 'route:splash', function( actions ) {
 				actions = actions || {};
 				var options = {
 					actions: actions
@@ -37,7 +37,7 @@ define( [
 
 
 			// Page: List
-			this.on( 'route:list', function () {
+			this.on( 'route:list', function() {
 				var options = {
 					model: app.cribsCollection
 				};
@@ -53,7 +53,7 @@ define( [
 			} );
 
 			// Page: Map
-			this.on( 'route:map', function () {
+			this.on( 'route:map', function() {
 				var options = {
 					model: app.cribsCollection
 				};
@@ -70,7 +70,7 @@ define( [
 
 			// Page: Sync
 			// Telltale, telltale .-.
-			this.on( 'route:sync', function () {
+			this.on( 'route:sync', function() {
 			} );
 
 			// History
