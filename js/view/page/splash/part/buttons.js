@@ -2,8 +2,9 @@ define( [
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!tpl/page/splash/part/buttons.html'
-], function( $, _, Backbone, ButtonsTpl ) {
+	'text!tpl/page/splash/part/buttons.html',
+	'view/utility/feedback'
+], function( $, _, Backbone, ButtonsTpl, FeedbackView ) {
 
 	var AddView = Backbone.View.extend( {
 
@@ -23,7 +24,12 @@ define( [
 				app.router.navigate( 'list', { trigger: true } );
 			},
 			'click #route-sync': function() {
-				app.router.navigate( 'sync', { trigger: true } );
+				new FeedbackView( {
+					'type': 'info',
+					'title': 'Nope',
+					'message': 'Not yet implemented.'
+				} );
+				//app.router.navigate( 'sync', { trigger: true } );
 			}
 		}
 
