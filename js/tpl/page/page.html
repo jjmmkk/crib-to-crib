@@ -1,5 +1,22 @@
-<header id="tag-header">
-</header>
+<div
+	<%
+		if ( typeof markup_class !== 'undefined' ) {
+			%>class="<%= markup_class %>"<%
+		}
+	%>
+	id="tag-page"
+>
 
-<div id="tag-content">
+	<header
+		class="act-page-header"
+		id="tag-header"
+	>
+	</header>
+
+	<div
+		class="act-page-content"
+		id="tag-content"
+	>
+	</div>
+
 </div>

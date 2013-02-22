@@ -18,7 +18,7 @@ define( [
         },
 
         render: function () {
-            this.$el.html( this.template );
+            this.$el.html( _.template( this.template, { 'markup_class': 'page-list' } ) );
 
             var pageHeaderView = new PageHeaderView( this.options );
             pageHeaderView.render();

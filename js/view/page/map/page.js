@@ -17,7 +17,7 @@ define( [
         },
 
         render: function () {
-            this.$el.html( this.template );
+            this.$el.html( _.template( this.template, {} ) );
 
             var pageHeaderView = new PageHeaderView( this.options );
             pageHeaderView.render();
