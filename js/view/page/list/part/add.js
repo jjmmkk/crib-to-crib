@@ -34,9 +34,9 @@ define( [
 			_.each( this.fields, function( field ) {
 				if ( field.val() === '' ) {
 					valid = false;
-					field.addClass( 'error' );
+					field.addClass( 'act-field-error' );
 				} else {
-					field.removeClass( 'error' );
+					field.removeClass( 'act-field-error' );
 				}
 			} );
 			if ( valid ) {
@@ -59,7 +59,7 @@ define( [
 						crib.save();
 						// Reset fields
 						_.each( obj.fields, function( field ) {
-							field.val( '' ).removeClass( 'error' );
+							field.val( '' ).removeClass( 'act-field-error' );
 						} );
 					// Error
 					} else {
